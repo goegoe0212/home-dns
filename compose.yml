@@ -1,0 +1,9 @@
+services:
+  coredns:
+    build: .
+    restart: always
+    ports:
+      - '53:53'
+      - '53:53/udp'
+    volumes:
+      - './config:/etc/coredns'
