@@ -20,5 +20,11 @@ services:
     ports:
       - "2379:2379"
 
+  # fastapi:
+  #   build:
+  #     context: ./fastapi
+  #     dockerfile: Dockerfile
+  #     target: production
+
 volumes:
   etcd-data:
