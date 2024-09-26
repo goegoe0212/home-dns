@@ -1,0 +1,13 @@
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: develop
+    tty: true
+    stdin_open: true
+    command: /bin/bash
+
+  etcd:
+    image: bitnami/etcd
+    command: etcd

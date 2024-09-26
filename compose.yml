@@ -1,9 +1,30 @@
 services:
   coredns:
-    build: .
+    image: coredns/coredns
+    command: -conf /etc/coredns/Corefile
     restart: always
     ports:
-      - '53:53'
-      - '53:53/udp'
+      - "53:53/tcp"
+      - "53:53/udp"
     volumes:
-      - './config:/etc/coredns'
+      - "./coredns/config:/etc/coredns"
+    depends_on:
+      - etcd
+
+  etcd:
+    image: bitnami/etcd
+    command: etcd
+    restart: always
+    volumes:
+      - etcd-data:/bitnami/etcd
+    ports:
+      - "2379:2379"
+
+  # fastapi:
+  #   build:
+  #     context: ./fastapi
+  #     dockerfile: Dockerfile
+  #     target: production
+
+volumes:
+  etcd-data:

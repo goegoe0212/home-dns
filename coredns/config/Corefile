@@ -1,0 +1,9 @@
+.:53 {
+    etcd {
+        path /skydns
+        endpoint http://etcd:2379
+    }
+    errors
+    log . "{proto} {remote} is Request: {name} {type} {>id}"
+    cache 30
+}
