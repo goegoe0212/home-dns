@@ -1,10 +1,9 @@
-. {
-    whoami
-    forward . 8.8.8.8:53
+.:53 {
+    etcd {
+        path /skydns
+        endpoint http://etcd:2379
+    }
     errors
     log . "{proto} {remote} is Request: {name} {type} {>id}"
-    hosts /etc/coredns/hosts {
-        fallthrough
-    }
-    reload
+    cache 30
 }
